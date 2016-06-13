@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<meta charset="UTF-8">
+<script>
+	 var app = angular.module('todo', []);
+	 app.controller('todo',function($scope){
+		 $scope.tasks = [];
+		 
+		 $scope.add = function() {
+	            $scope.tasks.push({text:$scope.inputText, done:false});
+	            $scope.inputText = '';
+	        }
+		 $scope.tasks = [];
+	 });
+
+
+</script>
+
+<style type="text/css">
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+</style>
+
+<title>ToDo | zscalar</title>
+</head>
+<body ng-app="todo" ng-controller="todo" >
+	<div align="center" style="margin-top: 300px">
+	<input type="text" placeholder=" Enter TODO items" style="border-style:solid; border-width:4px"name="txt" ng-model="inputText" />
+	<button ng-click="add()"> Go </button>
+
+        <div ng-repeat="t in tasks">
+        	<input type="checkbox" placeholder="Enter to do items" "{{$index}}" ng-model="t.done"> <label for="{{$index}}" class="done-{{t.done}}">{{ t.text }}</label>
+        </div>
+   </div>
+</body>
+</html>

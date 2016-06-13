@@ -12,6 +12,12 @@
 	 app.controller('todo',function($scope){
 		 $scope.tasks = [];
 		 
+		  $scope.enter = function(){
+			 if(event.keyCode == 13 && $scope.inputText){
+				 $scope.add();
+			 }
+		 }
+		 
 		 $scope.add = function() {
 	            $scope.tasks.push({text:$scope.inputText, done:false});
 	            $scope.inputText = '';
@@ -33,7 +39,7 @@
 </head>
 <body ng-app="todo" ng-controller="todo" >
 	<div align="center" style="margin-top: 300px">
-	<input type="text" placeholder=" Enter TODO items" style="border-style:solid; border-width:4px"name="txt" ng-model="inputText" />
+	<input type="text" placeholder=" Enter TODO items" style="border-style:solid; border-width:4px"name="txt" ng-model="inputText" ng-keypress="enter()" />
 	<button ng-click="add()"> Go </button>
 
         <div ng-repeat="t in tasks">
